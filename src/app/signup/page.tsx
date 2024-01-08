@@ -7,24 +7,26 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-const signUpSchema = z.object({
-  email: z.string().email(),
-  password: z
-    .string()
-    .regex(
-      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,
-      "Password must contain at least 1 lowercase letter, 1 uppercase letter, 1 number, and with a minimum of 8 characters"
-    ),
-  confirmPassword: z
-    .string()
-    .regex(
-      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,
-      "Password must contain at least 1 lowercase letter, 1 uppercase letter, 1 number, and with a minimum of 8 characters"
-    ),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Password and Confirm password must match",
-  path: ["confirmPassword"],
-});
+const signUpSchema = z
+  .object({
+    email: z.string().email(),
+    password: z
+      .string()
+      .regex(
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,
+        "Password must contain at least 1 lowercase letter, 1 uppercase letter, 1 number, and with a minimum of 8 characters",
+      ),
+    confirmPassword: z
+      .string()
+      .regex(
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,
+        "Password must contain at least 1 lowercase letter, 1 uppercase letter, 1 number, and with a minimum of 8 characters",
+      ),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Password and Confirm password must match",
+    path: ["confirmPassword"],
+  });
 
 const SignUpPage = () => {
   const [isEmailSent, setIsEmailSent] = useState<boolean>(false);
@@ -44,12 +46,13 @@ const SignUpPage = () => {
 
   const togglePasswordVisibilty = () => setisPasswordVisible((prev) => !prev);
 
-  const toggleConfirmPasswordVisibility = () => setIsConfirmpasswordVisible((prev) => !prev)
+  const toggleConfirmPasswordVisibility = () =>
+    setIsConfirmpasswordVisible((prev) => !prev);
 
   return (
     <div className="container flex h-screen w-full flex-col items-center justify-center space-y-5">
       <div className="w-full space-y-5">
-        <h1 className="text-center text-3xl font-bold lg:text-4xl w-full">
+        <h1 className="w-full text-center text-3xl font-bold lg:text-4xl">
           Sign Up
         </h1>
         {!isEmailSent && (
@@ -89,9 +92,9 @@ const SignUpPage = () => {
                 onClick={togglePasswordVisibilty}
               >
                 {isPasswordVisible ? (
-                  <EyeOff className="text-2xl text-default-400 pointer-events-none" />
+                  <EyeOff className="pointer-events-none text-2xl text-default-400" />
                 ) : (
-                  <Eye className="text-2xl text-default-400 pointer-events-none" />
+                  <Eye className="pointer-events-none text-2xl text-default-400" />
                 )}
               </button>
             }
@@ -112,9 +115,9 @@ const SignUpPage = () => {
                 onClick={toggleConfirmPasswordVisibility}
               >
                 {isConfirmPasswordVisible ? (
-                  <EyeOff className="text-2xl text-default-400 pointer-events-none" />
+                  <EyeOff className="pointer-events-none text-2xl text-default-400" />
                 ) : (
-                  <Eye className="text-2xl text-default-400 pointer-events-none" />
+                  <Eye className="pointer-events-none text-2xl text-default-400" />
                 )}
               </button>
             }
