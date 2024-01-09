@@ -26,7 +26,7 @@ const SignInPage = () => {
   return (
     <div className="container flex h-screen w-full flex-col items-center justify-center space-y-5">
       <div className="w-full space-y-5">
-        <h1 className="text-center text-3xl font-bold lg:text-4xl w-full">
+        <h1 className="w-full text-center text-3xl font-bold lg:text-4xl">
           Sign In
         </h1>
         <p className="text-center lg:text-lg">
@@ -63,9 +63,9 @@ const SignInPage = () => {
               onClick={togglePasswordVisibilty}
             >
               {isPasswordVisible ? (
-                <EyeOff className="text-2xl text-default-400 pointer-events-none" />
+                <EyeOff className="pointer-events-none text-2xl text-default-400" />
               ) : (
-                <Eye className="text-2xl text-default-400 pointer-events-none" />
+                <Eye className="pointer-events-none text-2xl text-default-400" />
               )}
             </button>
           }
