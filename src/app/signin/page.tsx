@@ -42,7 +42,7 @@ const SignInPage = () => {
   const togglePasswordVisibilty = () => setisPasswordVisible((prev) => !prev);
 
   return (
-    <div className="container flex h-screen w-full flex-col items-center justify-center space-y-5">
+    <div className="container flex w-full grow flex-col items-center justify-center space-y-5">
       <div className="w-full space-y-5">
         <h1 className="w-full text-center text-3xl font-bold lg:text-4xl">
           Sign In

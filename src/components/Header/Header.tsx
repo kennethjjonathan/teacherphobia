@@ -1,15 +1,20 @@
 import {
-    Avatar,
-    Link,
-    Navbar,
-    NavbarBrand,
-    NavbarContent,
-    NavbarItem,
-    NavbarMenuToggle,
+  Avatar,
+  Link,
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  NavbarMenuToggle,
 } from "@nextui-org/react";
+import { User } from "@supabase/supabase-js";
 import TeacherPhobiaLogo from "../TeacherPhobiaLogo/TeacherPhobiaLogo";
 
-const Header = () => {
+type HeaderProps = {
+  user: User | null;
+};
+
+const Header = ({ user }: HeaderProps) => {
   return (
     <Navbar isBordered maxWidth="full">
       <NavbarContent justify="start">
