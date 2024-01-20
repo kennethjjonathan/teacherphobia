@@ -1,5 +1,7 @@
 "use client";
 
+import { supabase } from "@/lib/supabase-client/supabase";
+import { toastError } from "@/lib/toast-error/toastError";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Input, Link } from "@nextui-org/react";
 import { Eye, EyeOff } from "lucide-react";
@@ -42,10 +44,23 @@ const SignUpPage = () => {
     resolver: zodResolver(signUpSchema),
   });
 
-  const onSubmit = async (formData: z.infer<typeof signUpSchema>) => {};
+  const onSubmit = async (formData: z.infer<typeof signUpSchema>) => {
+    try {
+      const { error } = await supabase.auth.signUp({
+        email: formData.email,
+        password: formData.password,
+        options: {
+          emailRedirectTo: `${location.origin}/auth/callback`,
+        },
+      });
+      if (error) throw error;
+      setIsEmailSent(true);
+    } catch (error: unknown) {
+      toastError(error);
+    }
+  };
 
   const togglePasswordVisibilty = () => setisPasswordVisible((prev) => !prev);
-
   const toggleConfirmPasswordVisibility = () =>
     setIsConfirmpasswordVisible((prev) => !prev);
 
