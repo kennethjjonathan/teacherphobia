@@ -16,7 +16,7 @@ function generateColor(rating: number): "success" | "warning" | "danger" {
 const RatingBar = ({
   rating,
   label,
-  minValue = 1,
+  minValue = 0,
   maxValue = 5,
 }: RatingBarProps) => {
   return (

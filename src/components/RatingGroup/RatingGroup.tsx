@@ -1,26 +1,41 @@
-import { ISchool } from "@/interface/ISchool";
-import RatingBar from "../RatingBar/RatingBar";
+import { IRating } from "@/interface/IRating";
+import RatingBarAndElaboration from "../RatingBarAndElaboration/RatingBarAndElaboration";
 
 type RatingGroupProps = {
-  school: ISchool;
+  rating: IRating;
 };
 
-const RatingGroup = ({ school }: RatingGroupProps) => {
+const RatingGroup = ({ rating }: RatingGroupProps) => {
   return (
-    <div>
-      <RatingBar rating={school.rating.difficulty} label="Difficulty" />
-      <RatingBar rating={school.rating.career_support} label="Career Support" />
-      <RatingBar rating={school.rating.hazing_culture} label="Hazing Culture" />
-      <RatingBar
-        rating={school.rating.worth_the_money}
+    <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+      <RatingBarAndElaboration
+        rating_matrix={rating.difficulty}
+        label="Difficulty"
+      />
+      <RatingBarAndElaboration
+        rating_matrix={rating.career_support}
+        label="Career Support"
+      />
+      <RatingBarAndElaboration
+        rating_matrix={rating.hazing_culture}
+        label="Hazing Culture"
+      />
+      <RatingBarAndElaboration
+        rating_matrix={rating.worth_the_money}
         label="Worth the Money"
       />
-      <RatingBar
-        rating={school.rating.experience_with_the_teacher}
+      <RatingBarAndElaboration
+        rating_matrix={rating.experience_with_the_teacher}
         label="Experience with the teachers"
       />
-      <RatingBar rating={school.rating.curriculum} label="Curriculum" />
-      <RatingBar rating={school.rating.school_area} label="School Area" />
+      <RatingBarAndElaboration
+        rating_matrix={rating.curriculum}
+        label="Curriculum"
+      />
+      <RatingBarAndElaboration
+        rating_matrix={rating.school_area}
+        label="School Area"
+      />
     </div>
   );
 };
