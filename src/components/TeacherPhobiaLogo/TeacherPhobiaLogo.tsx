@@ -1,5 +1,14 @@
+import { Link } from "@nextui-org/react";
+
 const TeacherPhobiaLogo = () => {
-  return <p className="text-small font-bold text-foreground lg:text-medium">TeacherPhobia</p>;
+  return (
+    <Link
+      className="text-small font-bold text-foreground lg:text-medium"
+      href="/"
+    >
+      TeacherPhobia
+    </Link>
+  );
 };
 
 export default TeacherPhobiaLogo;
