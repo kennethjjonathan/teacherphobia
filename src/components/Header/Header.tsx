@@ -6,10 +6,9 @@ import {
   Navbar,
   NavbarBrand,
   NavbarContent,
-  NavbarItem,
   NavbarMenu,
   NavbarMenuItem,
-  NavbarMenuToggle,
+  NavbarMenuToggle
 } from "@nextui-org/react";
 import { User } from "@supabase/supabase-js";
 import { usePathname } from "next/navigation";
@@ -46,16 +45,6 @@ const Header = ({ user }: HeaderProps) => {
         <NavbarBrand>
           <TeacherPhobiaLogo />
         </NavbarBrand>
-      </NavbarContent>
-      <NavbarContent
-        className="hidden gap-4 sm:flex sm:text-small lg:text-medium"
-        justify="center"
-      >
-        <NavbarItem className="cursor-pointer">
-          <Link color="foreground" href="/">
-            Search
-          </Link>
-        </NavbarItem>
       </NavbarContent>
       <NavbarContent
         justify="end"

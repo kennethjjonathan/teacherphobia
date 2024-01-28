@@ -22,7 +22,6 @@ const SearchBar = () => {
   }
 
   function onEnter(e: KeyboardEvent<HTMLInputElement>) {
-    e.stopPropagation();
     if (e.key === "Enter") {
       const params = new URLSearchParams();
       params.set("q", searchInput);
@@ -38,8 +37,6 @@ const SearchBar = () => {
       disableSelectorIconRotation
       selectorIcon={null}
       fullWidth
-      value={searchInput}
-      onInputChange={handleSearchInput}
       onKeyDown={onEnter}
       allowsCustomValue
     >
