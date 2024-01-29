@@ -10,7 +10,7 @@ const TeacherPhobiaLogo = () => {
         width={20}
         alt="TeacherPhobia's logo"
       />
-      <p className="hidden text-sm font-bold text-foreground sm:block lg:text-base">
+      <p className="hidden text-sm font-bold text-foreground sm:block">
         TeacherPhobia
       </p>
     </Link>
