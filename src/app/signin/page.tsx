@@ -1,8 +1,11 @@
 "use client";
 
+import { supabase } from "@/lib/supabase-client/supabase";
+import { toastError } from "@/lib/toast-error/toastError";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Input, Link } from "@nextui-org/react";
 import { Eye, EyeOff } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -13,6 +16,7 @@ const signInSchema = z.object({
 });
 
 const SignInPage = () => {
+  const router = useRouter();
   const [isPasswordVisible, setisPasswordVisible] = useState<boolean>(false);
   const {
     register,
@@ -21,10 +25,24 @@ const SignInPage = () => {
   } = useForm<z.infer<typeof signInSchema>>({
     resolver: zodResolver(signInSchema),
   });
-  const onSubmit = async (formData: z.infer<typeof signInSchema>) => {};
+
+  const onSubmit = async (formData: z.infer<typeof signInSchema>) => {
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email: formData.email,
+        password: formData.password,
+      });
+      if (error) throw error;
+      router.replace("/");
+    } catch (error: unknown) {
+      toastError(error);
+    }
+  };
+
   const togglePasswordVisibilty = () => setisPasswordVisible((prev) => !prev);
+
   return (
-    <div className="container flex h-screen w-full flex-col items-center justify-center space-y-5">
+    <div className="container flex w-full grow flex-col items-center justify-center space-y-5">
       <div className="w-full space-y-5">
         <h1 className="w-full text-center text-3xl font-bold lg:text-4xl">
           Sign In
