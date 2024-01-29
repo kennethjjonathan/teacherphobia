@@ -1,3 +1,4 @@
+import Header from "@/components/Header/Header";
 import { supabase } from "@/lib/supabase-server/supabase";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -22,7 +23,10 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <div className="flex min-h-screen flex-col">{children}</div>
+          <div className="flex min-h-screen flex-col">
+            <Header />
+            {children}
+          </div>
           <Toaster />
         </Providers>
       </body>
