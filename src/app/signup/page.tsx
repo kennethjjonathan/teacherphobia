@@ -1,10 +1,12 @@
 "use client";
 
+import { InputPassword } from "@/components/InputPassword/InputPassword";
+import { InputWithValidation } from "@/components/InputWithValidation/InputWithValidation";
+import { Button } from "@/components/shadcn/ui/button";
 import { supabase } from "@/lib/supabase-client/supabase";
 import { toastError } from "@/lib/toast-error/toastError";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Input, Link } from "@nextui-org/react";
-import { Eye, EyeOff } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -32,9 +34,6 @@ const signUpSchema = z
 
 const SignUpPage = () => {
   const [isEmailSent, setIsEmailSent] = useState<boolean>(false);
-  const [isPasswordVisible, setisPasswordVisible] = useState<boolean>(false);
-  const [isConfirmPasswordVisible, setIsConfirmpasswordVisible] =
-    useState<boolean>(false);
 
   const {
     register,
@@ -60,90 +59,60 @@ const SignUpPage = () => {
     }
   };
 
-  const togglePasswordVisibilty = () => setisPasswordVisible((prev) => !prev);
-  const toggleConfirmPasswordVisibility = () =>
-    setIsConfirmpasswordVisible((prev) => !prev);
-
   return (
-    <div className="container flex w-full grow flex-col items-center justify-center space-y-5">
-      <div className="w-full space-y-5">
+    <div className="container flex w-full grow flex-col items-center justify-center space-y-3">
+      <div className="w-full space-y-3">
         <h1 className="w-full text-center text-3xl font-bold lg:text-4xl">
           Sign Up
         </h1>
         {!isEmailSent && (
-          <p className="text-center lg:text-lg">
-            Already have an account? <Link href="/signin">Sign In</Link>
-          </p>
+          <div className="flex w-full items-center justify-center text-sm text-muted-foreground lg:text-base">
+            <p>Already have an account?</p>
+            <Button variant={"link"} asChild className="text-sm lg:text-base">
+              <Link href={"/signin"}>Sign In</Link>
+            </Button>
+          </div>
         )}
       </div>
       {!isEmailSent ? (
         <form
-          className="w-full max-w-lg space-y-3 lg:space-y-5"
+          className="w-full max-w-lg space-y-2 lg:space-y-3"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <Input
-            isInvalid={errors.email ? true : false}
-            errorMessage={errors.email?.message}
+          <InputWithValidation
+            isInvalid={errors.email}
+            invalidMessage={errors.email?.message}
             {...register("email")}
+            placeholder="Email"
             type="email"
-            label="Email"
-            isRequired
-            fullWidth
-            isDisabled={isSubmitting}
+            disabled={isSubmitting}
+            required
           />
-          <Input
-            isInvalid={errors.password ? true : false}
-            errorMessage={errors.password?.message}
+          <InputPassword
+            isInvalid={errors.password}
+            invalidMessage={errors.password?.message}
             {...register("password")}
-            type={isPasswordVisible ? "text" : "password"}
-            label="Password"
-            isRequired
-            fullWidth
-            isDisabled={isSubmitting}
-            endContent={
-              <button
-                className="focus:outline-none"
-                type="button"
-                onClick={togglePasswordVisibilty}
-              >
-                {isPasswordVisible ? (
-                  <EyeOff className="pointer-events-none text-2xl text-default-400" />
-                ) : (
-                  <Eye className="pointer-events-none text-2xl text-default-400" />
-                )}
-              </button>
-            }
+            placeholder="Password"
+            disabled={isSubmitting}
+            required
+            idShowPassword="signup-showpassword"
           />
-          <Input
-            isInvalid={errors.confirmPassword ? true : false}
-            errorMessage={errors.confirmPassword?.message}
+          <InputPassword
+            isInvalid={errors.confirmPassword}
+            invalidMessage={errors.confirmPassword?.message}
             {...register("confirmPassword")}
-            type={isConfirmPasswordVisible ? "text" : "password"}
-            label="Confirm password"
-            isRequired
-            fullWidth
-            isDisabled={isSubmitting}
-            endContent={
-              <button
-                className="focus:outline-none"
-                type="button"
-                onClick={toggleConfirmPasswordVisibility}
-              >
-                {isConfirmPasswordVisible ? (
-                  <EyeOff className="pointer-events-none text-2xl text-default-400" />
-                ) : (
-                  <Eye className="pointer-events-none text-2xl text-default-400" />
-                )}
-              </button>
-            }
+            placeholder="Confirm password"
+            disabled={isSubmitting}
+            required
+            idShowPassword="signup-showconfirmpassword"
           />
           <Button
-            color="primary"
+            size={"lg"}
+            className="w-full text-sm lg:text-base"
             type="submit"
-            fullWidth
-            isLoading={isSubmitting}
+            disabled={isSubmitting}
           >
-            Submit
+            Sign Up
           </Button>
         </form>
       ) : (

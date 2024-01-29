@@ -28,7 +28,7 @@ const InputPassword = React.forwardRef<HTMLInputElement, InputPasswordProps>(
         />
         <Button
           onClick={handleToggleShow}
-          variant={"outline"}
+          variant={"link"}
           type="button"
           size={"icon"}
           className="absolute inset-y-0 right-0 z-10"

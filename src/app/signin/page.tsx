@@ -45,7 +45,7 @@ const SignInPage = () => {
         <h1 className="w-full text-center text-3xl font-bold lg:text-4xl">
           Sign In
         </h1>
-        <div className="flex w-full items-center justify-center text-sm lg:text-base">
+        <div className="flex w-full items-center justify-center text-sm text-muted-foreground lg:text-base">
           <p>Don&apos;t have an account?</p>
           <Button variant={"link"} asChild className="text-sm lg:text-base">
             <Link href={"/signup"}>Sign Up</Link>
@@ -76,7 +76,7 @@ const SignInPage = () => {
         />
         <Button
           size={"lg"}
-          className="w-full"
+          className="w-full text-sm lg:text-base"
           type="submit"
           disabled={isSubmitting}
         >
