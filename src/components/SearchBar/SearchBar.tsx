@@ -1,6 +1,6 @@
 "use client";
 
-import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
+import { Command } from "cmdk";
 import { useRouter } from "next/navigation";
 import { KeyboardEvent, useState } from "react";
 
@@ -29,23 +29,17 @@ const SearchBar = () => {
     }
   }
   return (
-    <Autocomplete
-      label="Search a school"
-      size="lg"
-      isClearable
-      description="Press enter to search"
-      disableSelectorIconRotation
-      selectorIcon={null}
-      fullWidth
-      onKeyDown={onEnter}
-      allowsCustomValue
-    >
-      {dummyData.map((item) => (
-        <AutocompleteItem key={item.uuid}>
-          {item.university_name}
-        </AutocompleteItem>
-      ))}
-    </Autocomplete>
+    <Command label="Search a school" className="bg-red-500">
+      <Command.Input
+        value={searchInput}
+        onValueChange={(value) => handleSearchInput(value)}
+      />
+      <Command.List>
+        {dummyData.map((item, index) => (
+          <Command.Item key={index}>{item.university_name}</Command.Item>
+        ))}
+      </Command.List>
+    </Command>
   );
 };
 export default SearchBar;
