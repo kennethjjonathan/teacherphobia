@@ -17,16 +17,22 @@ const InputPassword = React.forwardRef<HTMLInputElement, InputPasswordProps>(
       setIsShown((prev) => !prev);
     }
     return (
-      <div className="flex w-full">
+      <div className="relative z-0 w-full">
         <InputWithValidation
           ref={ref}
           type={isShown ? "text" : "password"}
-          className={className + "grow"}
+          className={"pr-[3.75rem] z-0" + className}
           {...props}
           isInvalid={isInvalid}
           invalidMessage={invalidMessage}
         />
-        <Button onClick={handleToggleShow} variant={"ghost"} type="button" size={"icon"}>
+        <Button
+          onClick={handleToggleShow}
+          variant={"outline"}
+          type="button"
+          size={"icon"}
+          className="absolute inset-y-0 right-0 z-10"
+        >
           {isShown ? (
             <EyeOff className="h-4 w-4" />
           ) : (

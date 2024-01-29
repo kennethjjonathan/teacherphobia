@@ -40,17 +40,17 @@ const SignInPage = () => {
   };
 
   return (
-    <div className="container flex w-full grow flex-col items-center justify-center space-y-5">
-      <div className="w-full space-y-5">
+    <div className="container flex w-full grow flex-col items-center justify-center space-y-3">
+      <div className="w-full space-y-3">
         <h1 className="w-full text-center text-3xl font-bold lg:text-4xl">
           Sign In
         </h1>
-        <p className="text-center text-sm lg:text-base">
-          Don&apos;t have an account?
+        <div className="flex w-full items-center justify-center text-sm lg:text-base">
+          <p>Don&apos;t have an account?</p>
           <Button variant={"link"} asChild className="text-sm lg:text-base">
             <Link href={"/signup"}>Sign Up</Link>
           </Button>
-        </p>
+        </div>
       </div>
       <form
         className="w-full max-w-lg space-y-2 lg:space-y-3"
