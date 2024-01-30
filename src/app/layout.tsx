@@ -1,12 +1,10 @@
 import Header from "@/components/Header/Header";
 import { supabase } from "@/lib/supabase-server/supabase";
+import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
 import Providers from "./providers";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,7 +19,7 @@ export default async function RootLayout({
   const { data } = await supabase.auth.getUser();
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={GeistSans.className}>
         <Providers>
           <div className="flex min-h-screen flex-col">
             <Header user={null} />
