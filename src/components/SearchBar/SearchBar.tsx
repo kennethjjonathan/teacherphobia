@@ -1,8 +1,9 @@
 "use client";
 
-import { Command } from "cmdk";
 import { useRouter } from "next/navigation";
 import { KeyboardEvent, useState } from "react";
+import { Button } from "../shadcn/ui/button";
+import { CommandDialog, CommandInput } from "../shadcn/ui/command";
 
 const dummyData = [
   {
@@ -13,6 +14,7 @@ const dummyData = [
 ];
 
 const SearchBar = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const router = useRouter();
   const [searchInput, setSearchInput] = useState<string>("");
 
@@ -28,18 +30,19 @@ const SearchBar = () => {
       router.push(`/search?${params.toString()}`);
     }
   }
+
+  function handleOpen() {
+    setIsOpen(true);
+  }
   return (
-    <Command label="Search a school" className="bg-red-500">
-      <Command.Input
-        value={searchInput}
-        onValueChange={(value) => handleSearchInput(value)}
-      />
-      <Command.List>
-        {dummyData.map((item, index) => (
-          <Command.Item key={index}>{item.university_name}</Command.Item>
-        ))}
-      </Command.List>
-    </Command>
+    <>
+      <Button onClick={handleOpen}>
+        Search a school
+      </Button>
+      <CommandDialog open={isOpen} onOpenChange={setIsOpen}>
+        <CommandInput placeholder="Type in a school name..." />
+      </CommandDialog>
+    </>
   );
 };
 export default SearchBar;

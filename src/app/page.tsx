@@ -1,8 +1,9 @@
+import SearchBar from "@/components/SearchBar/SearchBar";
 import { Badge } from "@/components/shadcn/ui/badge";
 
 export default function Home() {
   return (
-    <main className="container flex grow flex-col items-center justify-center gap-2">
+    <main className="container flex grow flex-col items-center justify-center gap-5">
       <Badge
         variant={"secondary"}
         className="text-center text-base font-bold sm:text-2xl md:text-3xl"
@@ -14,6 +15,7 @@ export default function Home() {
         serves parents, students, and educators with insightful reviews for
         better-informed decisions and academic development.
       </p>
+      <SearchBar />
     </main>
   );
 }
