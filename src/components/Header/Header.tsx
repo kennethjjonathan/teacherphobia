@@ -2,6 +2,7 @@
 
 import { User } from "@supabase/supabase-js";
 import { usePathname } from "next/navigation";
+import GithubLink from "../GithubLink/GithubLink";
 import NavLink from "../NavLink/NavLink";
 import TeacherPhobiaLogo from "../TeacherPhobiaLogo/TeacherPhobiaLogo";
 
@@ -39,7 +40,8 @@ const Header = ({ user }: HeaderProps) => {
     <header className="w-full border-b-[0.5px] border-input py-3.5">
       <div className="container flex items-center justify-between">
         <TeacherPhobiaLogo />
-        <nav className="flex items-center justify-end gap-10">
+        <nav className="flex items-center gap-10">
+          <GithubLink />
           {unsignedRoutes.map((route) => (
             <NavLink
               key={route.href}
