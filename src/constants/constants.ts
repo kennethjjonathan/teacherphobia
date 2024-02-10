@@ -1,5 +1,5 @@
 const CONSTANTS = {
-  ONLY_WHITESPACE: /^\s+$/,
+  ONLY_WHITESPACE: /^\s*$/,
   GITHUB_URL: "https://github.com/kennethjjonathan/teacherphobia",
 };
 

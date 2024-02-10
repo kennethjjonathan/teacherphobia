@@ -6,5 +6,11 @@ export interface ISchool {
   web_url: string;
   address: string;
   rating_amount: number;
-  rating: IRating
+  rating: IRating;
+}
+
+export interface ISchoolSuggestion {
+  uuid: string;
+  name: string;
+  address: string;
 }
